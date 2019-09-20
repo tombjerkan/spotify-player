@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.disabled {
+    opacity: 0.4;
+}
+
+.skip {
+    width: 40px;
+    cursor: pointer;
+}
+
+.playPause {
+    width: 50px;
+    cursor: pointer;
+}
