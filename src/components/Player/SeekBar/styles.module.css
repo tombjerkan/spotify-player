@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.position {
+    margin-right: 10px;
+}
+
+.duration {
+    margin-left: 10px;
+}
+
+.durationBar {
+    flex: 1;
+    background: #eee;
+    height: 9px;
+    border-radius: 4px;
+}
+
+.positionBar {
+    background: #555;
+    height: 100%;
+    border-radius: 4px;
+}
