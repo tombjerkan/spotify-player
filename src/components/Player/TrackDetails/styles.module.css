@@ -1,0 +1,21 @@
+.container {
+    flex-flow: column wrap;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    height: 80px;
+}
+
+.image {
+    height: 100%;
+    width: auto;
+    margin-right: 20px;
+}
+
+.title {
+    margin-bottom: 5px;
+}
+
+.artists {
+    font-size: 12px;
+}
