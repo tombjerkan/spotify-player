@@ -3,17 +3,18 @@
     display: flex;
     justify-content: center;
     align-content: flex-start;
-    height: 80px;
+    height: 60px;
 }
 
 .image {
     height: 100%;
     width: auto;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .title {
-    margin-bottom: 5px;
+    font-size: 14px;
+    margin-bottom: 3px;
 }
 
 .artists {
