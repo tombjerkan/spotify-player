@@ -14,13 +14,14 @@ export default function PlaybackControls({
     onPause,
     onSkipToPrevious,
     onSkipToNext,
-    disabled
+    disabled,
+    className
 }) {
     const isPreviousEnabled = !disabled && canSkipToPrevious;
     const isNextEnabled = !disabled && canSkipToNext;
 
     return (
-        <div className={styles.container}>
+        <div className={classNames(styles.container, className)}>
             <Previous
                 onClick={isPreviousEnabled && onSkipToPrevious}
                 className={classNames(

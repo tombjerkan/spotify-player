@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
+import classNames from "classnames";
 import styles from "./styles.module.css";
 
-export default function SeekBar({ positionMs, durationMs, onSeek }) {
+export default function SeekBar({ positionMs, durationMs, onSeek, className }) {
     return (
-        <div className={styles.container}>
+        <div className={classNames(styles.container, className)}>
             <div className={styles.position}>{toString(positionMs)}</div>
 
             <Bar
