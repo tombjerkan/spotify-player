@@ -34,7 +34,10 @@
         }
     },
     "lint-staged": {
-        "*.js": "prettier --tab-width 4 --check",
+        "*.js": [
+            "eslint",
+            "prettier --tab-width 4 --check"
+        ],
         "*.json": [
             "prettier --tab-width 4 --write",
             "git add"

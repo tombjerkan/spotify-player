@@ -7,7 +7,7 @@ export default function TrackDetails({ title, artists, imageUri, className }) {
 
     return (
         <div className={classNames(styles.container, className)}>
-            <img src={imageUri} className={styles.image} />
+            <img src={imageUri} alt="" className={styles.image} />
             <div className={styles.title}>{title}</div>
             <div className={styles.artists}>{artistString}</div>
         </div>
