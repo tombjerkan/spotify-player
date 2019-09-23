@@ -3,13 +3,17 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    padding-left: 250px;
-    padding-right: 250px;
+    padding: 21px 250px;
+    background: #f2f2f2;
 }
 
 .trackDetails {
     position: absolute;
-    left: 10px;
+    left: 17px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.playbackControls {
+    margin-bottom: 15px;
 }
