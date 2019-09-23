@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import TrackDetails from "./TrackDetails";
 import PlaybackControls from "./PlaybackControls";
 import SeekBar from "./SeekBar";
@@ -16,10 +17,11 @@ export default function Player({
     onSkipToNext,
     positionMs,
     durationMs,
-    onSeek
+    onSeek,
+    className
 }) {
     return (
-        <div className={styles.container}>
+        <div className={classNames(styles.container, className)}>
             {track !== null && (
                 <TrackDetails
                     title={track.title}
