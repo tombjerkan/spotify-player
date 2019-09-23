@@ -23,7 +23,7 @@ export default function PlaybackControls({
     return (
         <div className={classNames(styles.container, className)}>
             <Previous
-                onClick={isPreviousEnabled && onSkipToPrevious}
+                onClick={isPreviousEnabled ? onSkipToPrevious : undefined}
                 className={classNames(
                     styles.skip,
                     !isPreviousEnabled && styles.disabled
@@ -38,7 +38,7 @@ export default function PlaybackControls({
             />
 
             <Next
-                onClick={isNextEnabled && onSkipToNext}
+                onClick={isNextEnabled ? onSkipToNext : undefined}
                 className={classNames(
                     styles.skip,
                     !isNextEnabled && styles.disabled
