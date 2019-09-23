@@ -1,3 +1,7 @@
+html {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family:
@@ -24,4 +28,10 @@ code {
         Consolas,
         "Courier New",
         monospace;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
