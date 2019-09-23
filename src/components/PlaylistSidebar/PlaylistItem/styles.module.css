@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 3px solid transparent;
+    padding: 2px 16px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.container:hover {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.selected {
+    border-left-color: green;
+}
+
+.speaker {
+    height: 14px;
+    width: auto;
+    transform: translateY(1px);
+}
