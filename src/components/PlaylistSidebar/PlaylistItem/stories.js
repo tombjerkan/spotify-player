@@ -9,13 +9,18 @@ export const actions = {
 };
 
 storiesOf("PlaylistItem", module)
-    .add("default", () => <PlaylistItem title="Bossa Nova" />)
+    .add("default", () => <PlaylistItem title="Bossa Nova" {...actions} />)
     .add("selected playlist", () => (
-        <PlaylistItem title="Bossa Nova" isSelected={true} />
+        <PlaylistItem title="Bossa Nova" isSelected={true} {...actions} />
     ))
-    .add("playing", () => <PlaylistItem title="Bossa Nova" isPlaying={true} />)
+    .add("playing", () => (
+        <PlaylistItem title="Bossa Nova" isPlaying={true} {...actions} />
+    ))
     .add("abbreviated name", () => (
         <div style={{ width: "200px" }}>
-            <PlaylistItem title="This is a very long playlist name that would be too long to fit in the container" />
+            <PlaylistItem
+                title="This is a very long playlist name that would be too long to fit in the container"
+                {...actions}
+            />
         </div>
     ));
