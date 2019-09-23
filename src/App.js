@@ -1,10 +1,11 @@
 import React from "react";
 import Player from "./components/Player";
+import getApiToken from "./getApiToken";
 import useSpotifyPlayer from "./useSpotifyPlayer";
 
-const apiToken = "enter token here";
-
 export default function App() {
+    const apiToken = getApiToken();
+
     const [player, state] = useSpotifyPlayer(apiToken);
 
     if (player === null || state === null) {
