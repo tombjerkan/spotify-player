@@ -3,20 +3,21 @@
     display: flex;
     justify-content: center;
     align-content: flex-start;
-    height: 60px;
+    height: 74px;
+    color: rgba(0, 0, 0, 0.9);
 }
 
 .image {
     height: 100%;
     width: auto;
-    margin-right: 10px;
+    margin-right: 17px;
 }
 
 .title {
-    font-size: 14px;
-    margin-bottom: 3px;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 
 .artists {
-    font-size: 12px;
+    font-size: 14px;
 }
