@@ -9,11 +9,11 @@
 }
 
 .skip {
-    width: 40px;
-    cursor: pointer;
+    width: 12px;
 }
 
 .playPause {
-    width: 50px;
-    cursor: pointer;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 37px;
 }
