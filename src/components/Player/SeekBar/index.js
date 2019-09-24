@@ -1,11 +1,14 @@
 import React, { useRef } from "react";
 import classNames from "classnames";
+import convertMillisecondsToString from "../../../convertMillisecondsToString";
 import styles from "./styles.module.css";
 
 export default function SeekBar({ positionMs, durationMs, onSeek, className }) {
     return (
         <div className={classNames(styles.container, className)}>
-            <div className={styles.position}>{toString(positionMs)}</div>
+            <div className={styles.position}>
+                {convertMillisecondsToString(positionMs)}
+            </div>
 
             <Bar
                 positionMs={positionMs}
@@ -13,7 +16,9 @@ export default function SeekBar({ positionMs, durationMs, onSeek, className }) {
                 onSeek={onSeek}
             />
 
-            <div className={styles.duration}>{toString(durationMs)}</div>
+            <div className={styles.duration}>
+                {convertMillisecondsToString(durationMs)}
+            </div>
         </div>
     );
 }
@@ -53,12 +58,4 @@ function Bar({ positionMs, durationMs, onSeek }) {
             />
         </div>
     );
-}
-
-function toString(milliseconds) {
-    const totalSeconds = Math.floor(milliseconds / 1000);
-    const minutePart = Math.floor(totalSeconds / 60);
-    const secondPart = totalSeconds % 60;
-
-    return `${minutePart}:${secondPart.toString().padStart(2, "0")}`;
 }

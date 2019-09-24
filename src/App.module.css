@@ -9,6 +9,11 @@
     grid-row: 1 / 2;
 }
 
+.selectedPlaylist {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
 .player {
     grid-column: 1 / 3;
     grid-row: 2 / 3;

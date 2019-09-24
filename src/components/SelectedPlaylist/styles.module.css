@@ -1,6 +1,7 @@
 .container {
+    overflow-y: scroll;
     display: grid;
-    grid-template: 200px auto / 200px auto;
+    grid-template: 200px minmax(0, 1fr) / 200px auto;
     padding: 30px 100px;
 }
 
@@ -20,6 +21,7 @@
 }
 
 .tracks {
+    align-self: start;
     margin-top: 50px;
     grid-column: 1 / 3;
     grid-row: 2 / 3;

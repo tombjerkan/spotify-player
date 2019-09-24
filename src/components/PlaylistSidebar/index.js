@@ -16,9 +16,15 @@ export default function PlaylistSidebar({
                 <li key={playlist.id}>
                     <PlaylistItem
                         title={playlist.name}
-                        isSelected={playlist.id === selectedPlaylist}
-                        isPlaying={playlist.id === playingPlaylist}
-                        onClick={() => onSelectPlaylist(playlist.id)}
+                        isSelected={
+                            selectedPlaylist &&
+                            playlist.id === selectedPlaylist.id
+                        }
+                        isPlaying={
+                            playingPlaylist &&
+                            playlist.id === playingPlaylist.id
+                        }
+                        onClick={() => onSelectPlaylist(playlist)}
                     />
                 </li>
             ))}
