@@ -19,30 +19,34 @@ export default function Tracks({
 
     return (
         <table className={classNames(styles.table, className)}>
-            <tr className={styles.headerRow}>
-                <th />
-                <th>Title</th>
-                <th>Artist</th>
-                <th>Album</th>
-                <th>Length</th>
-            </tr>
-
-            {tracks.map(track => (
-                <tr
-                    className={styles.trackRow}
-                    onDoubleClick={() => onPlayTrack(track.id)}
-                >
-                    <td className={styles.isPlayingCell}>
-                        {track.id === playingTrack && (
-                            <Speaker className={styles.speaker} />
-                        )}
-                    </td>
-                    <td>{track.title}</td>
-                    <td>{track.artist}</td>
-                    <td>{track.album}</td>
-                    <td>{track.length}</td>
+            <thead>
+                <tr className={styles.headerRow}>
+                    <th />
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Album</th>
+                    <th>Length</th>
                 </tr>
-            ))}
+            </thead>
+
+            <tbody>
+                {tracks.map(track => (
+                    <tr
+                        className={styles.trackRow}
+                        onDoubleClick={() => onPlayTrack(track.id)}
+                    >
+                        <td className={styles.isPlayingCell}>
+                            {track.id === playingTrack && (
+                                <Speaker className={styles.speaker} />
+                            )}
+                        </td>
+                        <td>{track.title}</td>
+                        <td>{track.artist}</td>
+                        <td>{track.album}</td>
+                        <td>{track.length}</td>
+                    </tr>
+                ))}
+            </tbody>
         </table>
     );
 }
