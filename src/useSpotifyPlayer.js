@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function useSpotifyPlayer(token) {
     const [player, setPlayer] = useState(null);
+    const [deviceId, setDeviceId] = useState(null);
     const [state, setState] = useState(null);
 
     if (player === null) {
@@ -31,6 +32,7 @@ export default function useSpotifyPlayer(token) {
             });
 
             player.addListener("ready", ({ device_id }) => {
+                setDeviceId(device_id);
                 console.log("Ready with Device ID", device_id);
             });
 
@@ -51,5 +53,5 @@ export default function useSpotifyPlayer(token) {
         }, 1000);
     }
 
-    return [player, state];
+    return [player, deviceId, state];
 }

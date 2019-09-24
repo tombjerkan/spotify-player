@@ -33,7 +33,7 @@ export default function Tracks({
                 {tracks.map(track => (
                     <tr
                         className={styles.trackRow}
-                        onDoubleClick={() => onPlayTrack(track.id)}
+                        onDoubleClick={() => onPlayTrack(track)}
                         key={track.id}
                     >
                         <td className={styles.isPlayingCell}>

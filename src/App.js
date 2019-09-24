@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import PlaylistSidebar from "./components/PlaylistSidebar";
 import SelectedPlaylist from "./components/SelectedPlaylist";
 import Player from "./components/Player";
@@ -12,7 +13,7 @@ import styles from "./App.module.css";
 export default function App() {
     const apiToken = getApiToken();
 
-    const [player, state] = useSpotifyPlayer(apiToken);
+    const [player, deviceId, state] = useSpotifyPlayer(apiToken);
     const [playlists, ,] = usePlaylists(apiToken);
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);
     const [
@@ -49,6 +50,7 @@ export default function App() {
                     imageUri={selectedPlaylist.images[0].url}
                     name={selectedPlaylist.name}
                     tracks={selectedPlaylistTracks.map(track => ({
+                        uri: track.track.uri,
                         id: track.track.id,
                         title: track.track.name,
                         artist: track.track.artists
@@ -64,7 +66,13 @@ export default function App() {
                             ? state.track_window.current_track.linked_from.id
                             : state.track_window.current_track.id
                     }
-                    onPlayTrack={() => {}}
+                    onPlayTrack={track => {
+                        axios.put(
+                            `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
+                            { uris: [track.uri] },
+                            { headers: { Authorization: `Bearer ${apiToken}` } }
+                        );
+                    }}
                     className={styles.selectedPlaylist}
                 />
             )}
