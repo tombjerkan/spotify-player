@@ -23,25 +23,12 @@ export default function App() {
         return null;
     }
 
-    let playingPlaylist = null;
-    if (state.context.uri) {
-        const contextUriParts = state.context.uri.split(":");
-        const playingPlaylistId =
-            contextUriParts[contextUriParts.length - 2] === "playlist"
-                ? contextUriParts[contextUriParts.length - 1]
-                : null;
-
-        playingPlaylist = playlists.find(
-            playlist => playlist.id === playingPlaylistId
-        );
-    }
-
     return (
         <div className={styles.container}>
             <PlaylistSidebar
                 playlists={playlists}
                 selectedPlaylist={selectedPlaylist}
-                playingPlaylist={playingPlaylist}
+                playingPlaylistId={state.currentPlaylistId}
                 onSelectPlaylist={setSelectedPlaylist}
                 className={styles.sidebar}
             />
@@ -61,18 +48,11 @@ export default function App() {
             )}
 
             <Player
-                track={{
-                    title: state.track_window.current_track.name,
-                    artists: state.track_window.current_track.artists.map(
-                        a => a.name
-                    ),
-                    imageUri:
-                        state.track_window.current_track.album.images[0].url
-                }}
+                track={state.currentTrack}
                 isConnected={state !== null}
-                isPlaying={!state.paused}
-                canSkipToPrevious={!state.disallows.skipping_prev}
-                canSkipToNext={!state.disallows.skipping_next}
+                isPlaying={state.isPlaying}
+                canSkipToPrevious={state.canSkipToPrevious}
+                canSkipToNext={state.canSkipToNext}
                 onPlay={player.resume}
                 onPause={player.pause}
                 onSkipToPrevious={player.skipToPreviousTrack}

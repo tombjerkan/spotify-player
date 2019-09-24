@@ -23,12 +23,7 @@ export default function Player({
     return (
         <div className={classNames(styles.container, className)}>
             {track !== null && (
-                <TrackDetails
-                    title={track.title}
-                    artists={track.artists}
-                    imageUri={track.imageUri}
-                    className={styles.trackDetails}
-                />
+                <TrackDetails track={track} className={styles.trackDetails} />
             )}
 
             <PlaybackControls

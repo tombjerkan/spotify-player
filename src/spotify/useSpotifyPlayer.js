@@ -25,7 +25,40 @@ export default function useSpotifyPlayer(token) {
                     seek: player.seek
                 });
             },
-            setState
+            state => {
+                if (!state) return;
+
+                let currentPlaylistId = null;
+                if (state.context.uri) {
+                    const contextUriParts = state.context.uri.split(":");
+                    if (
+                        contextUriParts[contextUriParts.length - 2] ===
+                        "playlist"
+                    ) {
+                        currentPlaylistId =
+                            contextUriParts[contextUriParts.length - 1];
+                    }
+                }
+
+                setState({
+                    currentPlaylistId,
+                    currentTrack: {
+                        id: state.track_window.current_track.id,
+                        name: state.track_window.current_track.name,
+                        artist: state.track_window.current_track.artists
+                            .map(a => a.name)
+                            .join(", "),
+                        album: state.track_window.current_track.album.name,
+                        imageUrl:
+                            state.track_window.current_track.album.images[0].url
+                    },
+                    isPlaying: !state.paused,
+                    canSkipToPrevious: state.disallows.skipping_prev,
+                    canSkipToNext: state.disallows.skipping_next,
+                    position: state.position,
+                    duration: state.duration
+                });
+            }
         );
     }
 

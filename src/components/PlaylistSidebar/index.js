@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 export default function PlaylistSidebar({
     playlists,
     selectedPlaylist,
-    playingPlaylist,
+    playingPlaylistId,
     onSelectPlaylist,
     className
 }) {
@@ -20,10 +20,7 @@ export default function PlaylistSidebar({
                             selectedPlaylist &&
                             playlist.id === selectedPlaylist.id
                         }
-                        isPlaying={
-                            playingPlaylist &&
-                            playlist.id === playingPlaylist.id
-                        }
+                        isPlaying={playlist.id === playingPlaylistId}
                         onClick={() => onSelectPlaylist(playlist)}
                     />
                 </li>

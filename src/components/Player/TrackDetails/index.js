@@ -2,14 +2,12 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./styles.module.css";
 
-export default function TrackDetails({ title, artists, imageUri, className }) {
-    const artistString = artists.join(", ");
-
+export default function TrackDetails({ track, className }) {
     return (
         <div className={classNames(styles.container, className)}>
-            <img src={imageUri} alt="" className={styles.image} />
-            <div className={styles.title}>{title}</div>
-            <div className={styles.artists}>{artistString}</div>
+            <img src={track.imageUrl} alt="" className={styles.image} />
+            <div className={styles.title}>{track.name}</div>
+            <div className={styles.artists}>{track.artist}</div>
         </div>
     );
 }
