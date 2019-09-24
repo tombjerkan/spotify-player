@@ -34,6 +34,7 @@ export default function Tracks({
                     <tr
                         className={styles.trackRow}
                         onDoubleClick={() => onPlayTrack(track.id)}
+                        key={track.id}
                     >
                         <td className={styles.isPlayingCell}>
                             {track.id === playingTrack && (
