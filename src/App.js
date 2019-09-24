@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import PlaylistSidebar from "./components/PlaylistSidebar";
 import SelectedPlaylist from "./components/SelectedPlaylist";
 import Player from "./components/Player";
@@ -13,7 +12,7 @@ import styles from "./App.module.css";
 export default function App() {
     const apiToken = getApiToken();
 
-    const [player, deviceId, state] = useSpotifyPlayer(apiToken);
+    const [player, state] = useSpotifyPlayer(apiToken);
     const [playlists, ,] = usePlaylists(apiToken);
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);
     const [
@@ -68,13 +67,7 @@ export default function App() {
                         state.track_window.current_track.linked_from.id ||
                         state.track_window.current_track.id
                     }
-                    onPlayTrack={track => {
-                        axios.put(
-                            `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
-                            { uris: [track.uri] },
-                            { headers: { Authorization: `Bearer ${apiToken}` } }
-                        );
-                    }}
+                    onPlayTrack={player.playTrack}
                     className={styles.selectedPlaylist}
                 />
             )}
@@ -92,13 +85,13 @@ export default function App() {
                 isPlaying={!state.paused}
                 canSkipToPrevious={!state.disallows.skipping_prev}
                 canSkipToNext={!state.disallows.skipping_next}
-                onPlay={() => player.resume()}
-                onPause={() => player.pause()}
-                onSkipToPrevious={() => player.previousTrack()}
-                onSkipToNext={() => player.nextTrack()}
+                onPlay={player.resume}
+                onPause={player.pause}
+                onSkipToPrevious={player.skipToPreviousTrack}
+                onSkipToNext={player.skipToNextTrack}
                 positionMs={state.position}
                 durationMs={state.duration}
-                onSeek={ms => player.seek(ms)}
+                onSeek={player.seek}
                 className={styles.player}
             />
         </div>

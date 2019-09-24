@@ -1,46 +1,71 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function useSpotifyPlayer(token) {
     const [player, setPlayer] = useState(null);
-    const [deviceId, setDeviceId] = useState(null);
     const [state, setState] = useState(null);
 
     if (player === null) {
-        waitForSpotify(() => {
-            const player = new window.Spotify.Player({
-                name: "Tom's Spotify Player",
-                getOAuthToken: cb => {
-                    cb(token);
-                }
-            });
-
-            player.addListener("initialization_error", logError);
-            player.addListener("authentication_error", logError);
-            player.addListener("account_error", logError);
-            player.addListener("playback_error", logError);
-
-            player.addListener("ready", ({ device_id }) => {
-                setDeviceId(device_id);
-                console.log("Ready with Device ID", device_id);
-            });
-
-            player.addListener("not_ready", ({ device_id }) => {
-                console.log("Device has gone offline", device_id);
-            });
-
-            player.connect();
-
-            setPlayer(player);
-
-            setInterval(() => {
-                player.getCurrentState().then(s => {
-                    setState(s);
+        connectPlayer(
+            "Tom's Spotify Player",
+            token,
+            (player, deviceId) => {
+                setPlayer({
+                    playTrack: track => {
+                        axios.put(
+                            `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
+                            { uris: [track.uri] },
+                            { headers: { Authorization: `Bearer ${token}` } }
+                        );
+                    },
+                    resume: player.resume,
+                    pause: player.pause,
+                    skipToPreviousTrack: player.previousTrack,
+                    skipToNextTrack: player.nextTrack,
+                    seek: player.seek
                 });
-            }, 100);
-        });
+            },
+            setState
+        );
     }
 
-    return [player, deviceId, state];
+    return [player, state];
+}
+
+function connectPlayer(name, token, onReady, onStateUpdate) {
+    waitForSpotify(() => {
+        const player = new window.Spotify.Player({
+            name,
+            getOAuthToken: cb => {
+                cb(token);
+            }
+        });
+
+        player.resume = player.resume.bind(player);
+        player.pause = player.pause.bind(player);
+        player.previousTrack = player.previousTrack.bind(player);
+        player.nextTrack = player.nextTrack.bind(player);
+        player.seek = player.seek.bind(player);
+
+        player.addListener("initialization_error", logError);
+        player.addListener("authentication_error", logError);
+        player.addListener("account_error", logError);
+        player.addListener("playback_error", logError);
+
+        player.addListener("ready", ({ device_id }) =>
+            onReady(player, device_id)
+        );
+
+        player.addListener("not_ready", ({ device_id }) => {
+            console.log("Device has gone offline", device_id);
+        });
+
+        player.connect();
+
+        setInterval(() => {
+            player.getCurrentState().then(onStateUpdate);
+        }, 100);
+    });
 }
 
 function waitForSpotify(callback) {
