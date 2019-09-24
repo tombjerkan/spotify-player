@@ -3,10 +3,10 @@ import axios from "axios";
 import PlaylistSidebar from "./components/PlaylistSidebar";
 import SelectedPlaylist from "./components/SelectedPlaylist";
 import Player from "./components/Player";
-import getApiToken from "./getApiToken";
-import useSpotifyPlayer from "./useSpotifyPlayer";
-import usePlaylists from "./usePlaylists";
-import usePlaylistTracks from "./usePlaylistTracks";
+import getApiToken from "./spotify/getApiToken";
+import useSpotifyPlayer from "./spotify/useSpotifyPlayer";
+import usePlaylists from "./spotify/usePlaylists";
+import usePlaylistTracks from "./spotify/usePlaylistTracks";
 import convertMillisecondsToString from "./convertMillisecondsToString";
 import styles from "./App.module.css";
 
