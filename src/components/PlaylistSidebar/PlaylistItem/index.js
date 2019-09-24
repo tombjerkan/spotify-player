@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { ReactComponent as Speaker } from "./speaker.svg";
+import { ReactComponent as Speaker } from "../../speaker.svg";
 import styles from "./styles.module.css";
 
 export default function PlaylistItem({

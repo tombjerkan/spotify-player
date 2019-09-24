@@ -1,0 +1,43 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.table > tr {
+    border-bottom: 1px solid #eee;
+}
+
+.table td,
+.table th {
+    padding: 10px 10px;
+}
+
+.headerRow > th {
+    text-transform: uppercase;
+    text-align: left;
+    cursor: default;
+}
+
+.trackRow > td {
+    cursor: default;
+}
+
+.isPlayingCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40px;
+}
+
+.speaker {
+    transform: translateY(1px);
+    width: 16px;
+}
+
+.empty {
+    font-size: 20px;
+    text-align: center;
+    padding: 50px;
+}
