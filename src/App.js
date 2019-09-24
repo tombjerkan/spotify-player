@@ -65,9 +65,8 @@ export default function App() {
                         )
                     }))}
                     playingTrack={
-                        state.track_window.current_track.linked_from
-                            ? state.track_window.current_track.linked_from.id
-                            : state.track_window.current_track.id
+                        state.track_window.current_track.linked_from.id ||
+                        state.track_window.current_track.id
                     }
                     onPlayTrack={track => {
                         axios.put(
