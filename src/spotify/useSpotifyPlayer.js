@@ -14,18 +14,10 @@ export default function useSpotifyPlayer(token) {
                 }
             });
 
-            player.addListener("initialization_error", ({ message }) => {
-                console.error(message);
-            });
-            player.addListener("authentication_error", ({ message }) => {
-                console.error(message);
-            });
-            player.addListener("account_error", ({ message }) => {
-                console.error(message);
-            });
-            player.addListener("playback_error", ({ message }) => {
-                console.error(message);
-            });
+            player.addListener("initialization_error", logError);
+            player.addListener("authentication_error", logError);
+            player.addListener("account_error", logError);
+            player.addListener("playback_error", logError);
 
             player.addListener("ready", ({ device_id }) => {
                 setDeviceId(device_id);
@@ -58,4 +50,8 @@ function waitForSpotify(callback) {
             callback();
         }
     }, 1000);
+}
+
+function logError(error) {
+    console.error(error.message);
 }
