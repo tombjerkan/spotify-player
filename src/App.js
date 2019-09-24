@@ -14,10 +14,10 @@ export default function App() {
     const [player, state] = useSpotifyPlayer(apiToken);
     const [playlists, ,] = usePlaylists(apiToken);
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);
-    const [
-        selectedPlaylistTracks,
-        setSelectedPlaylistTracks
-    ] = usePlaylistTracks(selectedPlaylist, apiToken);
+    const [selectedPlaylistTracks, ,] = usePlaylistTracks(
+        selectedPlaylist,
+        apiToken
+    );
 
     if (player === null || state === null) {
         return null;
