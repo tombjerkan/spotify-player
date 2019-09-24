@@ -49,7 +49,7 @@ export default function App() {
 
             {selectedPlaylist && selectedPlaylistTracks && (
                 <SelectedPlaylist
-                    imageUri={selectedPlaylist.images[0].url}
+                    imageUri={selectedPlaylist.imageUrl}
                     name={selectedPlaylist.name}
                     tracks={selectedPlaylistTracks.map(track => ({
                         uri: track.track.uri,
