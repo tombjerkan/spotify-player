@@ -14,7 +14,7 @@ export default function useSpotifyPlayer(token) {
                     playTrack: track => {
                         axios.put(
                             `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
-                            { uris: [track.uri] },
+                            { uris: [`spotify:track:${track.id}`] },
                             { headers: { Authorization: `Bearer ${token}` } }
                         );
                     },

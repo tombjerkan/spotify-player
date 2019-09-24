@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { ReactComponent as Speaker } from "../../speaker.svg";
+import convertMillisecondsToString from "../../../convertMillisecondsToString";
 import styles from "./styles.module.css";
 
 export default function Tracks({
@@ -41,10 +42,10 @@ export default function Tracks({
                                 <Speaker className={styles.speaker} />
                             )}
                         </td>
-                        <td>{track.title}</td>
+                        <td>{track.name}</td>
                         <td>{track.artist}</td>
                         <td>{track.album}</td>
-                        <td>{track.length}</td>
+                        <td>{convertMillisecondsToString(track.duration)}</td>
                     </tr>
                 ))}
             </tbody>

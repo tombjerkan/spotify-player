@@ -6,7 +6,6 @@ import getApiToken from "./spotify/getApiToken";
 import useSpotifyPlayer from "./spotify/useSpotifyPlayer";
 import usePlaylists from "./spotify/usePlaylists";
 import usePlaylistTracks from "./spotify/usePlaylistTracks";
-import convertMillisecondsToString from "./convertMillisecondsToString";
 import styles from "./App.module.css";
 
 export default function App() {
@@ -47,22 +46,11 @@ export default function App() {
                 className={styles.sidebar}
             />
 
-            {selectedPlaylist && selectedPlaylistTracks && (
+            {selectedPlaylist && selectedPlaylistTracks.length > 0 && (
                 <SelectedPlaylist
                     imageUri={selectedPlaylist.imageUrl}
                     name={selectedPlaylist.name}
-                    tracks={selectedPlaylistTracks.map(track => ({
-                        uri: track.track.uri,
-                        id: track.track.id,
-                        title: track.track.name,
-                        artist: track.track.artists
-                            .map(artist => artist.name)
-                            .join(", "),
-                        album: track.track.album.name,
-                        length: convertMillisecondsToString(
-                            track.track.duration_ms
-                        )
-                    }))}
+                    tracks={selectedPlaylistTracks}
                     playingTrack={
                         state.track_window.current_track.linked_from.id ||
                         state.track_window.current_track.id
