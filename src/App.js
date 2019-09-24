@@ -25,15 +25,18 @@ export default function App() {
         return null;
     }
 
-    const contextUriParts = state.context.uri.split(":");
-    const playingPlaylistId =
-        contextUriParts[contextUriParts.length - 2] === "playlist"
-            ? contextUriParts[contextUriParts.length - 1]
-            : null;
+    let playingPlaylist = null;
+    if (state.context.uri) {
+        const contextUriParts = state.context.uri.split(":");
+        const playingPlaylistId =
+            contextUriParts[contextUriParts.length - 2] === "playlist"
+                ? contextUriParts[contextUriParts.length - 1]
+                : null;
 
-    const playingPlaylist = playlists.find(
-        playlist => playlist.id === playingPlaylistId
-    );
+        playingPlaylist = playlists.find(
+            playlist => playlist.id === playingPlaylistId
+        );
+    }
 
     return (
         <div className={styles.container}>
