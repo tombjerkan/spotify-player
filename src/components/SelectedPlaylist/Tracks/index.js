@@ -1,8 +1,14 @@
 import React from "react";
+import classNames from "classnames";
 import { ReactComponent as Speaker } from "../../speaker.svg";
 import styles from "./styles.module.css";
 
-export default function Tracks({ tracks, playingTrack, onPlayTrack }) {
+export default function Tracks({
+    tracks,
+    playingTrack,
+    onPlayTrack,
+    className
+}) {
     if (tracks.length === 0) {
         return (
             <div className={styles.empty}>
@@ -12,7 +18,7 @@ export default function Tracks({ tracks, playingTrack, onPlayTrack }) {
     }
 
     return (
-        <table className={styles.table}>
+        <table className={classNames(styles.table, className)}>
             <tr className={styles.headerRow}>
                 <th />
                 <th>Title</th>
