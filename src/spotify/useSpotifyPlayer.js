@@ -43,7 +43,9 @@ export default function useSpotifyPlayer(token) {
                 setState({
                     currentPlaylistId,
                     currentTrack: {
-                        id: state.track_window.current_track.id,
+                        id:
+                            state.track_window.current_track.linked_from.id ||
+                            state.track_window.current_track.id,
                         name: state.track_window.current_track.name,
                         artist: state.track_window.current_track.artists
                             .map(a => a.name)
