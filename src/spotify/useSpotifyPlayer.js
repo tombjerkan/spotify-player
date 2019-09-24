@@ -6,11 +6,7 @@ export default function useSpotifyPlayer(token) {
     const [state, setState] = useState(null);
 
     if (player === null) {
-        const interval = setInterval(() => {
-            if (window.Spotify === undefined) {
-                return;
-            }
-
+        waitForSpotify(() => {
             const player = new window.Spotify.Player({
                 name: "Tom's Spotify Player",
                 getOAuthToken: cb => {
@@ -43,15 +39,23 @@ export default function useSpotifyPlayer(token) {
             player.connect();
 
             setPlayer(player);
-            clearInterval(interval);
 
             setInterval(() => {
                 player.getCurrentState().then(s => {
                     setState(s);
                 });
             }, 100);
-        }, 1000);
+        });
     }
 
     return [player, deviceId, state];
+}
+
+function waitForSpotify(callback) {
+    const interval = setInterval(() => {
+        if (window.Spotify !== undefined) {
+            clearInterval(interval);
+            callback();
+        }
+    }, 1000);
 }
