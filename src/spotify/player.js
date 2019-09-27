@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function useSpotifyPlayer(token) {
+export function useSpotifyPlayer(token) {
     const [player, setPlayer] = useState(null);
     const [state, setState] = useState(null);
 

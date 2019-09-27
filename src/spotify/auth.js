@@ -2,7 +2,7 @@ const clientId = "9831bc8550fa48b6b417840eb66434ab";
 const redirectUri = "http://localhost:3000";
 const scopes = ["playlist-read-private", "streaming"];
 
-export default function getApiToken() {
+export function getApiToken() {
     const hashString = window.location.hash.substring(1);
     const hashParams = new URLSearchParams(`?${hashString}`);
     const token = hashParams.get("access_token");

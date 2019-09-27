@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import PlaylistSidebar from "./components/PlaylistSidebar";
 import SelectedPlaylist from "./components/SelectedPlaylist";
 import Player from "./components/Player";
-import getApiToken from "./spotify/getApiToken";
-import useSpotifyPlayer from "./spotify/useSpotifyPlayer";
-import fetchPlaylists from "./spotify/fetchPlaylists";
-import fetchPlaylistTracks from "./spotify/fetchPlaylistTracks";
+import { getApiToken } from "./spotify/auth";
+import { useSpotifyPlayer } from "./spotify/player";
+import { fetchPlaylists, fetchPlaylistTracks } from "./spotify/api";
 import styles from "./App.module.css";
 
 export default function App() {
