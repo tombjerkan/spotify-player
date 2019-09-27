@@ -3,14 +3,14 @@ import PlaylistSidebar from "./components/PlaylistSidebar";
 import SelectedPlaylist from "./components/SelectedPlaylist";
 import Player from "./components/Player";
 import { getApiToken } from "./spotify/auth";
-import { useSpotifyPlayer } from "./spotify/player";
+import { connect } from "./spotify/player";
 import { fetchPlaylists, fetchPlaylistTracks } from "./spotify/api";
 import styles from "./App.module.css";
 
 export default function App() {
     const apiToken = getApiToken();
 
-    const [player, state] = useSpotifyPlayer(apiToken);
+    const [player, state] = usePlayer(apiToken);
     const playlists = usePlaylists(apiToken);
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);
     const selectedPlaylistTracks = usePlaylistTracks(
@@ -60,6 +60,22 @@ export default function App() {
             />
         </div>
     );
+}
+
+function usePlayer(token) {
+    const [player, setPlayer] = useState(null);
+    const [state, setState] = useState(null);
+
+    if (player === null) {
+        connect(
+            "Tom's Spotify Player",
+            token,
+            setPlayer,
+            setState
+        );
+    }
+
+    return [player, state];
 }
 
 function usePlaylists(token) {
