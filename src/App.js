@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PlaylistSidebar from "./components/PlaylistSidebar";
 import SelectedPlaylist from "./components/SelectedPlaylist";
 import Player from "./components/Player";
 import getApiToken from "./spotify/getApiToken";
 import useSpotifyPlayer from "./spotify/useSpotifyPlayer";
-import usePlaylists from "./spotify/usePlaylists";
-import usePlaylistTracks from "./spotify/usePlaylistTracks";
+import fetchPlaylists from "./spotify/fetchPlaylists";
+import fetchPlaylistTracks from "./spotify/fetchPlaylistTracks";
 import styles from "./App.module.css";
 
 export default function App() {
     const apiToken = getApiToken();
 
     const [player, state] = useSpotifyPlayer(apiToken);
-    const [playlists, ,] = usePlaylists(apiToken);
+    const playlists = usePlaylists(apiToken);
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);
-    const [selectedPlaylistTracks, ,] = usePlaylistTracks(
+    const selectedPlaylistTracks = usePlaylistTracks(
         selectedPlaylist,
         apiToken
     );
@@ -61,4 +61,24 @@ export default function App() {
             />
         </div>
     );
+}
+
+function usePlaylists(token) {
+    const [playlists, setPlaylists] = useState([]);
+
+    useEffect(() => {
+        fetchPlaylists(token).then(setPlaylists);
+    }, [token]);
+
+    return playlists;
+}
+
+function usePlaylistTracks(playlist, token) {
+    const [tracks, setTracks] = useState([]);
+
+    useEffect(() => {
+        fetchPlaylistTracks(playlist, token).then(setTracks);
+    }, [playlist, token]);
+
+    return tracks;
 }
