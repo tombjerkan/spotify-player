@@ -38,10 +38,7 @@ export default function App() {
                     imageUri={selectedPlaylist.imageUrl}
                     name={selectedPlaylist.name}
                     tracks={selectedPlaylistTracks}
-                    playingTrack={
-                        state.track_window.current_track.linked_from.id ||
-                        state.track_window.current_track.id
-                    }
+                    playingTrack={state.currentTrack.id}
                     onPlayTrack={player.playTrack}
                     className={styles.selectedPlaylist}
                 />
