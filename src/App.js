@@ -18,7 +18,7 @@ export default function App() {
         apiToken
     );
 
-    if (player === null || state === null) {
+    if (player === null) {
         return null;
     }
 

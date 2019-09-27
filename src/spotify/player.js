@@ -69,7 +69,11 @@ function transformPlayer(player, deviceId, token) {
 }
 
 function transformState(state) {
-    if (!state) return null;
+    if (!state) {
+        return {
+            currentTrack: {}
+        };
+    }
 
     let currentPlaylistId = null;
     if (state.context.uri) {
